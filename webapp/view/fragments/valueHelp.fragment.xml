@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <SelectDialog
+        id="valueHelpDialogId"
+        title="Select Values"
+        multiSelect="true"
+        search=".onValueHelpSearch"
+        confirm=".onValueHelpConfirm"
+        cancel=".onValueHelpCancel"
+        items="{
+            path: 'vhModel>/data'
+        }"
+        contentWidth="400px"
+        contentHeight="400px"
+    >
+        <StandardListItem title="{vhModel>value}" />
+    </SelectDialog>
+</core:FragmentDefinition>

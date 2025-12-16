@@ -1,0 +1,133 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+>
+    <Dialog
+        id="addSupplierDialog"
+        title="Add Supplier"
+        draggable="true"
+        contentHeight="400px"
+        contentWidth="800px"
+    >
+        <content>
+            <!-- Supplier Form -->
+            <form:SimpleForm
+                id="addSupplierFormId"
+                editable="true"
+                layout="ResponsiveGridLayout"
+                labelSpanL="4"
+                labelSpanM="4"
+                columnsL="2"
+                columnsM="2"
+                emptySpanL="1"
+                emptySpanM="3"
+            >
+                <Label text="ID" />
+                <Input
+                    id="supplierId"
+                    placeholder="Enter Supplier ID"
+                    liveChange="onSupplierFormValueChange"                    
+                    change="onValidateSupplierId"
+                    required="true"
+                />
+
+                <Label text="Name" />
+                <Input
+                    id="supplierNameId"
+                    placeholder="Enter Supplier Name"
+                    liveChange="onSupplierFormValueChange"
+                    change="onValidateSupplierName"
+                    required="true"
+                />
+                <Label text="Street" />
+                <Input
+                    id="supplierStreetId"
+                    placeholder="Enter Supplier Street"
+                    liveChange="onSupplierFormValueChange"
+                    change="onValidateSupplierStreet"
+                    required="true"
+                />
+                <Label text="City" />
+                <Input
+                    id="supplierCityId"
+                    placeholder="Enter Supplier City"
+                    liveChange="onSupplierFormValueChange"
+                    change="onValidateSupplierCity"
+                    required="true"
+                />
+
+                <Label text="State" />
+                <Input
+                    id="supplierStateId"
+                    placeholder="Enter Supplier State"
+                    liveChange="onSupplierFormValueChange"
+                    change="onValidateSupplierState"
+                    required="true"
+                />
+
+                <Label text="ZipCode" />
+                <Input
+                    id="supplierZipCodeId"
+                    placeholder="Enter Supplier Zip Code"
+                    liveChange="onSupplierFormValueChange"
+                    change="onValidateSupplierZipCode"
+                    required="true"
+                />
+
+                <Label text="Country" />
+                <Input
+                    id="supplierCountryId"
+                    placeholder="Enter Supplier Country"
+                    liveChange="onSupplierFormValueChange"
+                    change="onValidateSupplierCountry"
+                    required="true"
+                />
+                <Label text="Concurrency" />
+                <Input
+                    id="supplierConcurrencyId"
+                    placeholder="Enter Supplier Concurrency"
+                    value="0"
+                    editable="false"
+                    change="onValidateSupplierConcurrency"
+                    
+                />
+
+                <!-- <Label text="Select Product" />
+                <MultiComboBox
+                    id="productMultiComboBoxId"
+                    placeholder="Select an existing product"
+                    selectionChange="onExistingProductSelect"
+                    width="100%"
+                    items="{
+                                    path: '/Products',
+                                    sorter: { path: 'Name' }
+                                }"
+                >
+                    <core:Item
+                        key="{ID}"
+                        text="{Name}"
+                    />
+                </MultiComboBox> -->
+            </form:SimpleForm>
+        </content>
+        <beginButton>
+            <Button
+                id="saveButtonId"
+                text="Save"
+                press="onPressSaveSupplier"
+                type="Emphasized"
+                icon="sap-icon://save"
+            />
+        </beginButton>
+        <endButton>
+            <Button
+                text="Cancel"
+                press="onPressCancelSupplier"
+                type="Negative"
+                icon="sap-icon://cancel"
+            />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

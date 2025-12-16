@@ -1,0 +1,252 @@
+<mvc:View
+    controllerName="com.dp.zsalesordercrud.controller.ListReport"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:smartfilterbar="sap.ui.comp.smartfilterbar"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    xmlns:core="sap.ui.core"
+    xmlns:uxap="sap.uxap"
+>
+    <Page
+        id="listReportPageId"
+        title="{i18n>title}"
+    >
+        <smartfilterbar:SmartFilterBar
+            id="smartFilterBarId"
+            entitySet="Suppliers"
+            enableBasicSearch="true"
+            search="onGlobalSearch"
+            basicSearchFieldName="ID"
+            showClearOnFB="true"
+            clear="onPressClear"
+            persistencyKey="smartFilterExplored"
+            showFilterConfiguration="false"
+        >
+           <smartfilterbar:controlConfiguration>
+                <!-- <smartfilterbar:ControlConfiguration
+                    id="supplierIdFilterId"
+                    label="Supplier ID"
+                    key="ID"
+                    index="0"
+                    visibleInAdvancedArea="true"
+                />
+                <smartfilterbar:ControlConfiguration
+                    id="supplierNameFilterId"
+                    label="Supplier Name"
+                    key="Name"
+                    index="1"
+                    visibleInAdvancedArea="true"
+                /> -->
+                <smartfilterbar:ControlConfiguration visibleInAdvancedArea="true" label="ID" key="ID" hasValueHelpDialog="true">
+                    <smartfilterbar:customControl>
+                        <MultiInput
+                            id="supplierIdFilterId"
+                            showValueHelp="true"
+                            placeholder="Supplier ID"
+                            valueHelpRequest="onClickValueHelp"
+                            customData="{ field:'ID' }"
+                        />
+                    </smartfilterbar:customControl>
+                </smartfilterbar:ControlConfiguration>
+                <smartfilterbar:ControlConfiguration visibleInAdvancedArea="true" label="Name" key="Name" hasValueHelpDialog="true">
+                    <smartfilterbar:customControl>
+                        <MultiInput
+                            id="supplierNameFilterId"
+                            showValueHelp="true"
+                            valueHelpRequest="onClickValueHelp"
+                            placeholder="Supplier Name"
+                            customData="{ field:'Name' }"
+                        />
+                    </smartfilterbar:customControl>
+                </smartfilterbar:ControlConfiguration>
+            </smartfilterbar:controlConfiguration> 
+
+        </smartfilterbar:SmartFilterBar>
+
+        <smarttable:SmartTable
+            id="suppliersSmartTableId"
+            entitySet="Suppliers"
+            demandPopin="true"
+            smartFilterId="smartFilterBarId"
+            tableType="ResponsiveTable"
+            enableAutoBinding="false"
+            beforeRebindTable="onBeforeRebindTable"
+        >
+            <smarttable:customToolbar>
+                <OverflowToolbar>
+                    <Title text="Suppliers" />
+                    <ToolbarSpacer />
+                    <Button
+                        id="addSupplierButtonId"
+                        type="Emphasized"
+                        icon="sap-icon://add"
+                        tooltip="Add"
+                        press="onPressAddSupplier"
+                    />
+                    <Button
+                        id="editSupplierButtonId"
+                        type="Emphasized"
+                        icon="sap-icon://edit"
+                        tooltip="Edit"
+                        press="onPressEditSupplier"
+                        visible="false"
+                        enabled="false"
+                    />
+                    <Button
+                        id="deleteSupplierButtonId"
+                        type="Negative"
+                        icon="sap-icon://delete"
+                        tooltip="Delete"
+                        press="onPressDeleteSupplier"
+                        visible="false"
+                        enabled="false"
+                    />
+                </OverflowToolbar>
+            </smarttable:customToolbar>
+            <Table
+                id="responsiveTableId"
+                mode="MultiSelect"
+                updateFinished="onTableUpdateFinished"
+            >
+                <columns>
+                    <!-- column 1 - Supplier ID -->
+                    <Column
+                        id="ID"
+                        minScreenWidth="Tablet"
+                        demandPopin="true"
+                    >
+                        <Text text="ID" />
+                        <customData>
+                            <core:CustomData
+                                key="p13nData"
+                                value='\{"filterProperty":"ID", "leadingProperty":"ID", "sortProperty":"ID", 
+                                    "columnKey":"ID", "columnIndex":"0", "autoColumnWidth":\{"visibleProperty":"ID"}}'
+                            />
+                        </customData>
+                    </Column>
+                    <!-- Column 2 - Supplier Name -->
+                    <Column
+                        minScreenWidth="Tablet"
+                        demandPopin="true"
+                    >
+                        <Text text="Name" />
+                        <customData>
+                            <core:CustomData
+                                key="p13nData"
+                                value='\{"filterProperty":"Name", "leadingProperty":"Name", "sortProperty":"Name", 
+                                    "columnKey":"Name", "columnIndex":"1", "autoColumnWidth":\{"visibleProperty":"Name"}}'
+                            />
+                        </customData>
+                    </Column>
+                    <!-- column 3 - Supplier Street -->
+                    <!-- <Column
+                        id="Street"
+                        minScreenWidth="Tablet"
+                        demandPopin="true"
+                    >
+                        <Text text="Street" />
+                        <customData>
+                            <core:CustomData
+                                key="p13nData"
+                                value='\{"filterProperty":"Address/Street", "leadingProperty":"Address/Street", "sortProperty":"Address/Street", 
+                                    "columnKey":"Street", "columnIndex":"2", "autoColumnWidth":\{"visibleProperty":"Street"}}'
+                            />
+                        </customData>
+                    </Column> -->
+                    <!-- column 4 - Supplier City -->
+                    <!-- <Column
+                        id="City"
+                        minScreenWidth="Tablet"
+                        demandPopin="true"
+                    >
+                        <Text text="Supplier City" />
+                        <customData>
+                            <core:CustomData
+                                key="p13nData"
+                                value='\{"filterProperty":"City", "leadingProperty":"City", "sortProperty":"City", 
+                                    "columnKey":"City", "columnIndex":"3", "autoColumnWidth":\{"visibleProperty":"City"}}'
+                            />
+                        </customData>
+                    </Column> -->
+                    <!-- column 5 - Supplier State -->
+                    <!-- <Column
+                        id="State"
+                        minScreenWidth="Tablet"
+                        demandPopin="true"
+                    >
+                        <Text text="Supplier State" />
+                        <customData>
+                            <core:CustomData
+                                key="p13nData"
+                                value='\{"filterProperty":"State", "leadingProperty":"State", "sortProperty":"State", 
+                                    "columnKey":"State", "columnIndex":"4", "autoColumnWidth":\{"visibleProperty":"State"}}'
+                            />
+                        </customData>
+                    </Column> -->
+                    <!-- column 6 - Supplier Zipcode -->
+                    <!-- <Column
+                        id="ZipCode"
+                        minScreenWidth="Tablet"
+                        demandPopin="true"
+                    >
+                        <Text text="Supplier ZipCode" />
+                        <customData>
+                            <core:CustomData
+                                key="p13nData"
+                                value='\{"filterProperty":"ZipCode", "leadingProperty":"ZipCode", "sortProperty":"ZipCode", 
+                                    "columnKey":"ZipCode", "columnIndex":"5", "autoColumnWidth":\{"visibleProperty":"ZipCode"}}'
+                            />
+                        </customData>
+                    </Column> -->
+                    <!-- column 7 - Supplier Country -->
+                    <!-- <Column
+                        id="Country"
+                        minScreenWidth="Tablet"
+                        demandPopin="true"
+                    >
+                        <Text text="Supplier Country" />
+                        <customData>
+                            <core:CustomData
+                                key="p13nData"
+                                value='\{"filterProperty":"Country", "leadingProperty":"Country", "sortProperty":"Country", 
+                                    "columnKey":"Country", "columnIndex":"6", "autoColumnWidth":\{"visibleProperty":"Country"}}'
+                            />
+                        </customData>
+                    </Column> -->
+                    <!-- column 8 - Supplier Concurrency -->
+                    <!-- <Column
+                        id="Concurrency"
+                        minScreenWidth="Tablet"
+                        demandPopin="true"
+                    >
+                        <Text text="Concurrency" />
+                        <customData>
+                            <core:CustomData
+                                key="p13nData"
+                                value='\{"filterProperty":"Concurrency", "leadingProperty":"Concurrency", "sortProperty":"Concurrency", 
+                                    "columnKey":"Concurrency", "columnIndex":"7", "autoColumnWidth":\{"visibleProperty":"Concurrency"}}'
+                            />
+                        </customData>
+                    </Column> -->
+                </columns>
+                <items>
+                    <ColumnListItem
+                        type="Active"
+                        press="onSupplierPress"
+                    >
+                        <cells>
+                            <Text text="{ID}" />
+                            <Text text="{Name}" />
+                            <!-- <Text text="{path: 'Address', formatter:'.formatter.getStreet'}" /> -->
+                            <!-- <Text text="{Address/City}" /> -->
+                            <!--  <Text text="{Address/State}" />
+                            <Text text="{Address/ZipCode}" />
+                            <Text text="{Address/Country}" /> -->
+                            <!-- <Text text="{Concurrency}" /> -->
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </smarttable:SmartTable>
+    </Page>
+</mvc:View>

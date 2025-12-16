@@ -1,0 +1,158 @@
+<mvc:View
+    controllerName="com.dp.zsalesordercrud.controller.ObjectPage"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:uxap="sap.uxap"
+>
+    <Page
+        id="objectPageId"
+        title="{i18n>title}"
+    >
+        <!-- <headerContent>
+            <Toolbar>
+                <ToolbarSpacer />
+                <Button
+                    text="Edit"
+                    press=".onEdit"
+                    type="Emphasized"
+                />
+                <Button
+                    text="Delete"
+                    press=".onDelete"
+                    type="Negative"
+                />
+            </Toolbar>
+        </headerContent> -->
+        <uxap:ObjectPageLayout
+            id="ObjectPageLayout"
+            headerTitle="Supplier Details"
+        >
+            <uxap:headerTitle>
+                <uxap:ObjectPageDynamicHeaderTitle>
+                    <uxap:heading>
+                        <ObjectIdentifier
+                            title="{Name}"
+                            text="{Address/State}"
+                        />
+                    </uxap:heading>
+                </uxap:ObjectPageDynamicHeaderTitle>
+            </uxap:headerTitle>
+
+            <uxap:sections>
+                <!-- Supplier Info -->
+                <uxap:ObjectPageSection title="Supplier Info">
+                    <uxap:subSections>
+                        <uxap:ObjectPageSubSection>
+                            <uxap:blocks>
+                                <VBox>
+                                    <Text text="Street: {Address/Street}" />
+                                    <Text text="City: {Address/City}" />
+                                </VBox>
+                                <VBox>
+                                    <Text text="Country: {Address/Country}" />
+                                    <Text text="Zip: {Address/ZipCode}" />
+                                </VBox>
+                            </uxap:blocks>
+                        </uxap:ObjectPageSubSection>
+                    </uxap:subSections>
+                </uxap:ObjectPageSection>
+
+                <!-- Products -->
+                <uxap:ObjectPageSection title="Products Info">
+                    <uxap:subSections>
+                        <uxap:ObjectPageSubSection>
+                            <uxap:blocks>
+                                <Table
+                                    id="productsTable"
+                                    items="{supplierModel>/Products}"
+                                    mode="MultiSelect"
+                                >
+                                    <headerToolbar>
+                                        <OverflowToolbar>
+                                            <Title text="Products List" />
+                                            <ToolbarSpacer />
+                                            <!-- <Button
+                                                id="addProductButtonId"
+                                                tooltip="Add"
+                                                press="onPressAddProduct"
+                                                type="Emphasized"
+                                                icon="sap-icon://add"
+                                            /> -->
+                                            <Button
+                                                id="editProductButtonId"
+                                                text="Edit"
+                                                press="onPressEditProduct"
+                                                type="Emphasized"
+                                                icon="sap-icon://edit"
+                                                visible="false"
+                                                enabled="false"
+                                            />
+                                            <Button
+                                                id="cancelProductButtonId"
+                                                text="Cancel"
+                                                press="onPressCancelProduct"
+                                                type="Reject"
+                                                icon="sap-icon://cancel"
+                                                visible="false"
+                                            />
+                                            <!-- <Button
+                                                id="deleteProductButtonId"
+                                                tooltip="Delete"
+                                                press="onPressDeleteProduct"
+                                                type="Negative"
+                                                icon="sap-icon://delete"
+                                                visible="false"
+                                                enabled="false"
+                                            /> -->
+                                        </OverflowToolbar>
+                                    </headerToolbar>
+                                    <columns>
+                                        <Column>
+                                            <Text text="Name" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Price" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Category" />
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem>
+                                            <cells>
+                                                <!-- NAME -->
+                                                <Text
+                                                    text="{supplierModel>Name}"
+                                                />
+
+                                                <!-- PRICE (Toggle Text/Input based on isEditing flag) -->
+                                              
+                                                    <HBox>
+                                                        <Text
+                                                            text="{supplierModel>Price}"
+                                                            visible="true"
+                                                        />
+                                                        <Input
+                                                            value="{supplierModel>Price}"
+                                                            visible="false"
+                                                            width="6rem"
+                                                        />
+                                                    </HBox>
+                                                
+
+                                                <!-- CATEGORY (ALWAYS TEXT) -->
+                                                <Text
+                                                    text="{supplierModel>Category/Name}"
+                                                />
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </uxap:blocks>
+                        </uxap:ObjectPageSubSection>
+                    </uxap:subSections>
+                </uxap:ObjectPageSection>
+            </uxap:sections>
+        </uxap:ObjectPageLayout>
+    </Page>
+</mvc:View>

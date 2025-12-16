@@ -1,0 +1,128 @@
+{
+  "_version": "1.76.0",
+  "sap.app": {
+    "id": "com.dp.zsalesordercrud",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.19.5",
+      "toolsId": "a46f416a-89cc-4afa-a8f3-a1e454d29947"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/V2/(S(ywzlxk0to3s33pvsmznmv4og))/OData/OData.svc/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.142.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.dp.zsalesordercrud.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "type": "View",
+        "viewType": "XML",
+        "path": "com.dp.zsalesordercrud.view",
+        "async": true,
+        "viewPath": "com.dp.zsalesordercrud.view"
+      },
+      "routes": [
+        {
+          "pattern": "",
+          "name": "ListReport",          
+          "target": "ListReport"
+        },
+         {
+          "pattern": "ObjectPage/{supplierId}",
+          "name": "ObjectPage",          
+          "target": "ObjectPage"
+        }
+      ],
+      "targets": {
+        "ListReport": {
+          "viewName": "ListReport",
+          "viewType": "XML",
+          "transition": "fade",
+          "controlAggregation": "pages",
+          "clearControlAggregation": false,
+          "controlId": "app"
+        },
+        "ObjectPage": {
+          "viewName": "ObjectPage",
+          "viewType": "XML",
+          "transition": "fade",
+          "controlAggregation": "pages",
+          "clearControlAggregation": false,
+          "controlId": "app"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "com.dp.zsalesordercrud.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  }
+}
