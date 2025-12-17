@@ -39,4 +39,22 @@ An SAP Fiori application.
 
 1. Active NodeJS LTS (Long Term Support) version and associated supported NPM version.  (See https://nodejs.org)
 
+## Application Output
 
+### Initial LR Page
+![LRSuppliers](docs/output_screens/LR-InitialViewSalesOrderCrud.png)
+
+### Object Page With Supplier, Products and Category Information
+![OPView](docs/output_screens/OP-Supplier-Products-Categories.png)
+
+### LR-Global Search
+![LRGlobalSearch](docs/output_screens/Globalsearch-salesordercrud.png)
+
+### LR-Add Supplier
+![AddSupplier](docs/output_screens/AddSupplier.png)
+
+### LR-Edit Supplier
+![EditSupplier](docs/output_screens/EditSupplier.png)
+
+### LR-Edit Supplier Validation
+![EditValidation](docs/output_screens/EditValidation.png)
